@@ -42,8 +42,10 @@ const discontinued = document.getElementById('Discontinued').checked ? "" : "/di
     const { data: fetchedProducts } = await axios.get(`../../api/category/${id}/product${discontinued}`);
      let product_rows = "";
     fetchedProducts.map(product => {
+      const css = product.discontinued ? " class='discontinued'" : "";
+      console.log(css);
       product_rows += 
-        `<tr>
+         `<tr${css}>
           <td>${product.productName}</td>
        <td class="text-end">${product.unitPrice.toFixed(2)}</td>
           <td class="text-end">${product.unitsInStock}</td>
