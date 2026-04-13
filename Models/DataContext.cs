@@ -28,9 +28,4 @@ public class DataContext : DbContext
     SaveChanges();
   }
   
-  public void AddEmployee(Employee employee)
-  {
-    Employees.Add(employee);
-    SaveChanges();
-  }
 }
