@@ -1,0 +1,8 @@
+@model IEnumerable<Order>
+<!-- This was our problem: model IEnumerable<IdentityRole> -->
+<ul>
+@foreach (Order o in Model)
+{
+  <li>@o.OrderId - @o.OrderDate</li>
+}
+</ul>
