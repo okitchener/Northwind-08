@@ -10,9 +10,13 @@
           @foreach (Category c in Model)
           {
             if (c.CategoryId == ViewBag.id)
-              { <option value="@c.CategoryId" selected>@c.CategoryName</option> }
+            {
+              <option value="@c.CategoryId" selected>@c.CategoryName</option>
+            }
             else
-              { <option value="@c.CategoryId">@c.CategoryName</option> }
+            {
+              <option value="@c.CategoryId">@c.CategoryName</option>
+            }
           }
           </select>
           <input class="form-check-input ms-2 mt-2" type="checkbox" id="Discontinued">
@@ -74,4 +78,4 @@
   </div>
 </div>
 <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-<script src="../../product.js"></script>
+<script src="~/product.js"></script>
