@@ -1,8 +1,11 @@
 @model IEnumerable<Order>
 <!-- This was our problem: model IEnumerable<IdentityRole> -->
-<ul>
+
 @foreach (Order o in Model)
 {
-  <li>@o.OrderId - @o.OrderDate</li>
+  string formattedOrderDate = o.OrderDate.ToString("MM/dd/yyyy");
+  string formattedRequiredDate = o.RequiredDate.ToString("MM/dd/yyyy");
+  string formattedShippedDate = o.ShippedDate?.ToString("MM/dd/yyyy");
+  <li>@o.OrderId - @formattedOrderDate - @formattedRequiredDate - @formattedShippedDate</li>
 }
 </ul>
