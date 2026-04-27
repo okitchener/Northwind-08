@@ -3,20 +3,16 @@
  <table class="table table-hover">
   <thead>
     <tr>
-      <th scope="col">
          <div class="input-group">
-          <select class="form-select" id="CategoryId">
-          @foreach (Order o in Model)
-          {
-           
-          }
           </select>
             <th scope="col">Order ID</th>
             <th scope="col">Order Date</th>
             <th scope="col">Required Date</th>
             <th scope="col">Shipped Date</th>
           <input class="form-check-input ms-2 mt-2" type="checkbox" id="Overdue">
-          <label class="form-check-label ms-2 mt-1" for="Discontinued">Overdue Orders</label>
+          <label class="form-check-label ms-2 mt-1" for="Overdue">Overdue Orders</label>
+          <input class="form-check-input ms-2 mt-2" type="checkbox" id="ClossToShip">
+          <label class="form-check-label ms-2 mt-1" for="ClossToShip">Close to Ship</label>
         </div>
       </th>
     </tr>
@@ -27,7 +23,12 @@
     string formattedOrderDate = o.OrderDate.ToString("MM/dd/yyyy");
     string formattedRequiredDate = o.RequiredDate.ToString("MM/dd/yyyy");
     string formattedShippedDate = o.ShippedDate?.ToString("MM/dd/yyyy");
-    <li>@o.OrderId - @formattedOrderDate - @formattedRequiredDate - @formattedShippedDate</li>
+    <tr>
+      <td>@o.OrderId</td>
+      <td>@formattedOrderDate</td>
+      <td>@formattedRequiredDate</td>
+      <td>@formattedShippedDate</td>
+    </tr>
   }
 </tbody>
 </table>
