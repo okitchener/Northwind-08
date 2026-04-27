@@ -79,7 +79,11 @@ body {
 #product_rows tr {
   cursor: pointer;
 }
-
 .overdue {
-    color: red;
+    background-color: #f8d7da!important;
+    color: #842029!important;
+}
+.closeToShip {
+    background-color: #d4b44a!important;
+    color: #856404!important;
 }

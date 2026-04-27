@@ -1,6 +1,6 @@
 @model IEnumerable<Order>
 <!-- This was our problem: model IEnumerable<IdentityRole> -->
- <table class="table table-hover">
+ <table class="table">
   <thead>
     <tr>
          <div class="input-group">
@@ -20,14 +20,13 @@
 <tbody>
   @foreach (Order o in Model)
   {
-    string formattedOrderDate = o.OrderDate.ToString("MM/dd/yyyy");
-    string formattedRequiredDate = o.RequiredDate.ToString("MM/dd/yyyy");
-    string formattedShippedDate = o.ShippedDate?.ToString("MM/dd/yyyy");
+    string className = (o.RequiredDate < DateTime.Now) ? "overdue" : "";
+    string closeToShipClass = (o.ShippedDate == null && o.RequiredDate <= DateTime.Now.AddDays(5))  && o.RequiredDate >= DateTime.Now ? "closeToShip" : "";
     <tr>
-      <td>@o.OrderId</td>
-      <td>@formattedOrderDate</td>
-      <td>@formattedRequiredDate</td>
-      <td>@formattedShippedDate</td>
+      <td class="@className @closeToShipClass">@o.OrderId</td>
+      <td class="@className @closeToShipClass">@o.OrderDate.ToString("MM/dd/yyyy")</td>
+      <td class="@className @closeToShipClass">@o.RequiredDate.ToString("MM/dd/yyyy")</td>
+      <td class="@className @closeToShipClass">@o.ShippedDate?.ToString("MM/dd/yyyy")</td>
     </tr>
   }
 </tbody>

@@ -8,6 +8,6 @@ public class OrderController : Controller
   public IActionResult Orders() => View(_dataContext.Orders.OrderBy(o => o.OrderId));
   public IActionResult Index(int id)
   {
-     return View(_dataContext.Orders.OrderBy(o => o.OrderId));
+     return View(_dataContext.Orders.Where(o => o.ShippedDate == null).OrderBy(o => o.OrderId));
   }
   }
