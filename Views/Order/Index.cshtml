@@ -1,11 +1,33 @@
 @model IEnumerable<Order>
 <!-- This was our problem: model IEnumerable<IdentityRole> -->
-
-@foreach (Order o in Model)
-{
-  string formattedOrderDate = o.OrderDate.ToString("MM/dd/yyyy");
-  string formattedRequiredDate = o.RequiredDate.ToString("MM/dd/yyyy");
-  string formattedShippedDate = o.ShippedDate?.ToString("MM/dd/yyyy");
-  <li>@o.OrderId - @formattedOrderDate - @formattedRequiredDate - @formattedShippedDate</li>
-}
-</ul>
+ <table class="table table-hover">
+  <thead>
+    <tr>
+      <th scope="col">
+         <div class="input-group">
+          <select class="form-select" id="CategoryId">
+          @foreach (Order o in Model)
+          {
+           
+          }
+          </select>
+            <th scope="col">Order ID</th>
+            <th scope="col">Order Date</th>
+            <th scope="col">Required Date</th>
+            <th scope="col">Shipped Date</th>
+          <input class="form-check-input ms-2 mt-2" type="checkbox" id="Overdue">
+          <label class="form-check-label ms-2 mt-1" for="Discontinued">Overdue Orders</label>
+        </div>
+      </th>
+    </tr>
+</thead>
+<tbody>
+  @foreach (Order o in Model)
+  {
+    string formattedOrderDate = o.OrderDate.ToString("MM/dd/yyyy");
+    string formattedRequiredDate = o.RequiredDate.ToString("MM/dd/yyyy");
+    string formattedShippedDate = o.ShippedDate?.ToString("MM/dd/yyyy");
+    <li>@o.OrderId - @formattedOrderDate - @formattedRequiredDate - @formattedShippedDate</li>
+  }
+</tbody>
+</table>
