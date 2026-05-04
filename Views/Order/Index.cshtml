@@ -1,11 +1,17 @@
 @model IEnumerable<Order>
 <!-- This was our problem: model IEnumerable<IdentityRole> -->
+@{
+  Dictionary<int, string> customerNames = ViewBag.CustomerNames as Dictionary<int, string> ?? new Dictionary<int, string>();
+  Dictionary<int, string> employeeNames = ViewBag.EmployeeNames as Dictionary<int, string> ?? new Dictionary<int, string>();
+}
  <table class="table">
   <thead>
     <tr>
          <div class="input-group">
           </select>
             <th scope="col">Order ID</th>
+            <th scope="col">Customer Name</th>
+            <th scope="col">Employee Name</th>
             <th scope="col">Order Date</th>
             <th scope="col">Required Date</th>
             <th scope="col">Shipped Date</th>
@@ -24,6 +30,8 @@
     string closeToShipClass = (o.ShippedDate == null && o.RequiredDate <= DateTime.Now.AddDays(5))  && o.RequiredDate >= DateTime.Now ? "closeToShip" : "";
     <tr>
       <td class="@className @closeToShipClass">@o.OrderId</td>
+      <td class="@className @closeToShipClass">@(customerNames.TryGetValue(o.CustomerId, out var customerName) ? customerName : "-")</td>
+      <td class="@className @closeToShipClass">@(employeeNames.TryGetValue(o.EmployeeId, out var employeeName) ? employeeName : "-")</td>
       <td class="@className @closeToShipClass">@o.OrderDate.ToString("MM/dd/yyyy")</td>
       <td class="@className @closeToShipClass">@o.RequiredDate.ToString("MM/dd/yyyy")</td>
       <td class="@className @closeToShipClass">@o.ShippedDate?.ToString("MM/dd/yyyy")</td>
