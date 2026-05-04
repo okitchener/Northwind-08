@@ -4,6 +4,8 @@
   Dictionary<int, string> customerNames = ViewBag.CustomerNames as Dictionary<int, string> ?? new Dictionary<int, string>();
   Dictionary<int, string> employeeNames = ViewBag.EmployeeNames as Dictionary<int, string> ?? new Dictionary<int, string>();
 }
+<div id="User" style="display:none;" data-email="@User.Identity.Name" data-employee="@User.IsInRole("northwind-employee")"></div>
+
  <table class="table">
   <thead>
     <tr>

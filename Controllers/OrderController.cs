@@ -1,4 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 
 public class OrderController : Controller
 {
@@ -6,6 +8,9 @@ public class OrderController : Controller
   private DataContext _dataContext;
   public OrderController(DataContext db) => _dataContext = db;
   public IActionResult Orders() => View(_dataContext.Orders.OrderBy(o => o.OrderId));
+   [Authorize(Roles = "northwind-employee")]
+   
+
   public IActionResult Index(int id)
   {
       ViewBag.CustomerNames = _dataContext.Customers
@@ -16,8 +21,4 @@ public class OrderController : Controller
 
  return View(_dataContext.Orders.Where(o => o.ShippedDate == null).OrderBy(o => o.RequiredDate));
   }
-
-     
-
-     
   }
