@@ -14,7 +14,7 @@ public class OrderController : Controller
       ViewBag.EmployeeNames = _dataContext.Employees
           .ToDictionary(e => e.EmployeeId, e => e.FirstName + " " + e.LastName);
 
- return View(_dataContext.Orders.Where(o => o.ShippedDate == null).OrderBy(o => o.OrderId));
+ return View(_dataContext.Orders.Where(o => o.ShippedDate == null).OrderBy(o => o.RequiredDate));
   }
 
      
